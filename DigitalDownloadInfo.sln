@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Libraries", "_Libraries", "{E677E376-9649-4C62-91D9-A39A5ABF08C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{ABFC67C9-01CB-4355-93A2-8FA031AC9F1D}"
+	ProjectSection(SolutionItems) = preProject
+		DigitalDownloadInfo\DigitalDownloadInfo\DigitalDownloadInfoSetup\Setup.iss = DigitalDownloadInfo\DigitalDownloadInfo\DigitalDownloadInfoSetup\Setup.iss
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVDProfilerHelper", "DVDProfilerHelper\DVDProfilerHelper\DVDProfilerHelper.csproj", "{461DACCA-8EBF-4C03-AD1A-C438E4EB3B36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalDownloadInfoLibrary", "DigitalDownloadInfo\DigitalDownloadInfoLibrary\DigitalDownloadInfoLibrary.csproj", "{5CA4049E-5E29-4C8C-90E2-1FE91147BAEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalDownloadInfo", "DigitalDownloadInfo\DigitalDownloadInfo\DigitalDownloadInfo\DigitalDownloadInfo.csproj", "{C2972B88-D5C2-43F2-B439-59E517E0278A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{461DACCA-8EBF-4C03-AD1A-C438E4EB3B36}.Debug|x86.ActiveCfg = Debug|x86
+		{461DACCA-8EBF-4C03-AD1A-C438E4EB3B36}.Debug|x86.Build.0 = Debug|x86
+		{5CA4049E-5E29-4C8C-90E2-1FE91147BAEB}.Debug|x86.ActiveCfg = Debug|x86
+		{5CA4049E-5E29-4C8C-90E2-1FE91147BAEB}.Debug|x86.Build.0 = Debug|x86
+		{C2972B88-D5C2-43F2-B439-59E517E0278A}.Debug|x86.ActiveCfg = Debug|x86
+		{C2972B88-D5C2-43F2-B439-59E517E0278A}.Debug|x86.Build.0 = Debug|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{461DACCA-8EBF-4C03-AD1A-C438E4EB3B36} = {E677E376-9649-4C62-91D9-A39A5ABF08C7}
+	EndGlobalSection
+EndGlobal
