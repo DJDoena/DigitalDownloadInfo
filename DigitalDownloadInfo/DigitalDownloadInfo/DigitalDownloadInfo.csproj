@@ -46,11 +46,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System">
@@ -67,7 +67,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\PluginInterface\PluginInterface.4.cs">
+    <Compile Include="..\..\PluginInterface\PluginInterface.4.cs">
       <Link>PluginInterface.4.cs</Link>
     </Compile>
     <Compile Include="InternalConstants.cs" />
@@ -135,11 +135,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DigitalDownloadInfoLibrary\DigitalDownloadInfoLibrary\DigitalDownloadInfoLibrary.csproj">
+    <ProjectReference Include="..\..\DigitalDownloadInfoLibrary\DigitalDownloadInfoLibrary\DigitalDownloadInfoLibrary.csproj">
       <Project>{5ca4049e-5e29-4c8c-90e2-1fe91147baeb}</Project>
       <Name>DigitalDownloadInfoLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\DVDProfilerHelper\DVDProfilerHelper\DVDProfilerHelper.csproj">
+    <ProjectReference Include="..\..\DVDProfilerHelper\DVDProfilerHelper\DVDProfilerHelper.csproj">
       <Project>{461dacca-8ebf-4c03-ad1a-c438e4eb3b36}</Project>
       <Name>DVDProfilerHelper</Name>
     </ProjectReference>
