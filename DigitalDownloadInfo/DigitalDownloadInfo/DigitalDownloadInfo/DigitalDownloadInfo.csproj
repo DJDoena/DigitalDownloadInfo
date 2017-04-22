@@ -135,13 +135,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\DigitalDownloadInfoLibrary\DigitalDownloadInfoLibrary\DigitalDownloadInfoLibrary.csproj">
+      <Project>{5ca4049e-5e29-4c8c-90e2-1fe91147baeb}</Project>
+      <Name>DigitalDownloadInfoLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\DVDProfilerHelper\DVDProfilerHelper\DVDProfilerHelper.csproj">
       <Project>{461dacca-8ebf-4c03-ad1a-c438e4eb3b36}</Project>
       <Name>DVDProfilerHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DigitalDownloadInfoLibrary\DigitalDownloadInfoLibrary.csproj">
-      <Project>{5CA4049E-5E29-4C8C-90E2-1FE91147BAEB}</Project>
-      <Name>DigitalDownloadInfoLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

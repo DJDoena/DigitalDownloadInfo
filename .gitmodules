@@ -4,3 +4,6 @@
 [submodule "PluginInterface"]
 	path = PluginInterface
 	url = https://github.com/DJDoena/PluginInterface.git
+[submodule "DigitalDownloadInfoLibrary"]
+	path = DigitalDownloadInfoLibrary
+	url = https://github.com/DJDoena/DigitalDownloadInfoLibrary.git
