@@ -250,3 +250,4 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/DigitalDownloadInfo/DigitalDownloadInfo/DigitalDownloadInfoSetup/Setup/DigitalDownloadInfo/DigitalDownloadInfoSetup.exe
