@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalDownloadInfoLibrary"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalDownloadInfo", "DigitalDownloadInfo\DigitalDownloadInfo\DigitalDownloadInfo.csproj", "{C2972B88-D5C2-43F2-B439-59E517E0278A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Microsoft.WindowsAPICodePack\Core\Core.csproj", "{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell", "Microsoft.WindowsAPICodePack\Shell\Shell.csproj", "{AA0C00CB-8699-4F37-BFAE-40CA87ACC06D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -27,6 +31,10 @@ Global
 		{5CA4049E-5E29-4C8C-90E2-1FE91147BAEB}.Debug|x86.Build.0 = Debug|x86
 		{C2972B88-D5C2-43F2-B439-59E517E0278A}.Debug|x86.ActiveCfg = Debug|x86
 		{C2972B88-D5C2-43F2-B439-59E517E0278A}.Debug|x86.Build.0 = Debug|x86
+		{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57}.Debug|x86.ActiveCfg = Debug|x86
+		{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57}.Debug|x86.Build.0 = Debug|x86
+		{AA0C00CB-8699-4F37-BFAE-40CA87ACC06D}.Debug|x86.ActiveCfg = Debug|x86
+		{AA0C00CB-8699-4F37-BFAE-40CA87ACC06D}.Debug|x86.Build.0 = Debug|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,5 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{461DACCA-8EBF-4C03-AD1A-C438E4EB3B36} = {E677E376-9649-4C62-91D9-A39A5ABF08C7}
 		{5CA4049E-5E29-4C8C-90E2-1FE91147BAEB} = {E677E376-9649-4C62-91D9-A39A5ABF08C7}
+		{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57} = {E677E376-9649-4C62-91D9-A39A5ABF08C7}
+		{AA0C00CB-8699-4F37-BFAE-40CA87ACC06D} = {E677E376-9649-4C62-91D9-A39A5ABF08C7}
 	EndGlobalSection
 EndGlobal
