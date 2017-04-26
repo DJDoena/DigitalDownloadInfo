@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Libraries", "_Libraries", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{ABFC67C9-01CB-4355-93A2-8FA031AC9F1D}"
 	ProjectSection(SolutionItems) = preProject
-		DigitalDownloadInfo\DigitalDownloadInfo\DigitalDownloadInfoSetup\Setup.iss = DigitalDownloadInfo\DigitalDownloadInfo\DigitalDownloadInfoSetup\Setup.iss
+		DigitalDownloadInfo\DigitalDownloadInfoSetup\Setup.iss = DigitalDownloadInfo\DigitalDownloadInfoSetup\Setup.iss
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVDProfilerHelper", "DVDProfilerHelper\DVDProfilerHelper\DVDProfilerHelper.csproj", "{461DACCA-8EBF-4C03-AD1A-C438E4EB3B36}"
