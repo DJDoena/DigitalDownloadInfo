@@ -100,7 +100,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                         try
                         {
-                            Serializer<DigitalDownloadInfoList>.Serialize(sfd.FileName, ddis);
+                            DVDProfilerSerializer<DigitalDownloadInfoList>.Serialize(sfd.FileName, ddis);
 
                             #region Progress
 
@@ -204,7 +204,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                     try
                     {
-                        ddis = Serializer<DigitalDownloadInfoList>.Deserialize(ofd.FileName);
+                        ddis = DVDProfilerSerializer<DigitalDownloadInfoList>.Deserialize(ofd.FileName);
                     }
                     catch (Exception ex)
                     {

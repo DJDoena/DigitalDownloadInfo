@@ -199,7 +199,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                     try
                     {
-                        Serializer<DigitalDownloadInfo>.Serialize(sfd.FileName, ddi);
+                        DVDProfilerSerializer<DigitalDownloadInfo>.Serialize(sfd.FileName, ddi);
 
                         MessageBox.Show(MessageBoxTexts.Done, MessageBoxTexts.InformationHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -269,7 +269,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                     try
                     {
-                        ddi = Serializer<DigitalDownloadInfo>.Deserialize(ofd.FileName);
+                        ddi = DVDProfilerSerializer<DigitalDownloadInfo>.Deserialize(ofd.FileName);
                     }
                     catch (Exception ex)
                     {
@@ -308,7 +308,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
         {
             OnlineAccess.Init("Doena Soft.", "DigitalDownloadInfo");
 
-            OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/4.0.0/versions.xml", this, "DigitalDownloadInfo", GetType().Assembly);
+            OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "DigitalDownloadInfo", GetType().Assembly);
         }
 
         private void OnAboutToolStripMenuItemClick(Object sender, EventArgs e)
@@ -356,7 +356,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
         {
             DigitalDownloadInfo ddi = GetDigitalDownloadInfoForXmlStructure();
 
-            String xml = Serializer<DigitalDownloadInfo>.ToString(ddi);
+            String xml = DVDProfilerSerializer<DigitalDownloadInfo>.ToString(ddi);
 
             try
             {
@@ -375,7 +375,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
             {
                 String xml = Clipboard.GetText();
 
-                ddi = Serializer<DigitalDownloadInfo>.FromString(xml);
+                ddi = DVDProfilerSerializer<DigitalDownloadInfo>.FromString(xml);
             }
             catch
             {

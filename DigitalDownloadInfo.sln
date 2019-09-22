@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Libraries", "_Libraries", "{E677E376-9649-4C62-91D9-A39A5ABF08C7}"
 EndProject
@@ -44,5 +44,8 @@ Global
 		{5CA4049E-5E29-4C8C-90E2-1FE91147BAEB} = {E677E376-9649-4C62-91D9-A39A5ABF08C7}
 		{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57} = {E677E376-9649-4C62-91D9-A39A5ABF08C7}
 		{AA0C00CB-8699-4F37-BFAE-40CA87ACC06D} = {E677E376-9649-4C62-91D9-A39A5ABF08C7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D8DC677-FEF2-4D15-93C1-4F7CA43B14D0}
 	EndGlobalSection
 EndGlobal
