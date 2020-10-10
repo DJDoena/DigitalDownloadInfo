@@ -1,7 +1,7 @@
 [Setup]
 AppName=Digital Download Info
 AppId=DigitalDownloadInfo
-AppVerName=Digital Download Info 1.0.1.3
+AppVerName=Digital Download Info 1.0.1.4
 AppCopyright=Copyright © Doena Soft. 2017 - 2020
 AppPublisher=Doena Soft.
 AppPublisherURL=http://doena-journal.net/en/dvd-profiler-tools/
@@ -22,7 +22,7 @@ ShowLanguageDialog=no
 VersionInfoCompany=Doena Soft.
 VersionInfoCopyright=2017 - 2020
 VersionInfoDescription=Digital Download Info Setup
-VersionInfoVersion=1.0.1.3
+VersionInfoVersion=1.0.1.4
 UninstallDisplayIcon={app}\djdsoft.ico
 
 [Languages]
