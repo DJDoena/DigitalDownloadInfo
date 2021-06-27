@@ -1,8 +1,8 @@
 [Setup]
 AppName=Digital Download Info
 AppId=DigitalDownloadInfo
-AppVerName=Digital Download Info 1.0.1.4
-AppCopyright=Copyright © Doena Soft. 2017 - 2020
+AppVerName=Digital Download Info 1.0.1.5
+AppCopyright=Copyright © Doena Soft. 2017 - 2021
 AppPublisher=Doena Soft.
 AppPublisherURL=http://doena-journal.net/en/dvd-profiler-tools/
 DefaultDirName={commonpf32}\Doena Soft.\Digital Download Info
@@ -20,9 +20,9 @@ WizardSmallImageFile=compiler:wizmodernsmallimage-is.bmp
 DisableReadyPage=yes
 ShowLanguageDialog=no
 VersionInfoCompany=Doena Soft.
-VersionInfoCopyright=2017 - 2020
+VersionInfoCopyright=2017 - 2021
 VersionInfoDescription=Digital Download Info Setup
-VersionInfoVersion=1.0.1.4
+VersionInfoVersion=1.0.1.5
 UninstallDisplayIcon={app}\djdsoft.ico
 
 [Languages]
@@ -57,12 +57,12 @@ Source: "de\DVDProfilerHelper.resources.dll"; DestDir: "{app}\de"; Flags: ignore
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Run]
-Filename: "{win}\Microsoft.NET\Framework\v2.0.50727\RegAsm.exe"; Parameters: "/codebase ""{app}\DigitalDownloadInfo.dll"""; Flags: runhidden
+Filename: "{win}\Microsoft.NET\Framework\v4.0.30319\RegAsm.exe"; Parameters: "/codebase ""{app}\DigitalDownloadInfo.dll"""; Flags: runhidden
 
 ;[UninstallDelete]
 
 [UninstallRun]
-Filename: "{win}\Microsoft.NET\Framework\v2.0.50727\RegAsm.exe"; Parameters: "/u ""{app}\DigitalDownloadInfo.dll"""; Flags: runhidden
+Filename: "{win}\Microsoft.NET\Framework\v4.0.30319\RegAsm.exe"; Parameters: "/u ""{app}\DigitalDownloadInfo.dll"""; Flags: runhidden
 
 [Registry]
 ; Register - Cleanup ahead of time in case the user didn't uninstall the previous version.
