@@ -58,7 +58,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\PluginInterface\PluginInterface.5.cs">
+    <Compile Include="..\..\PluginInterface\DVDProfiler.Interface\PluginInterface.5.cs">
       <Link>PluginInterface.5.cs</Link>
     </Compile>
     <Compile Include="InternalConstants.cs" />
