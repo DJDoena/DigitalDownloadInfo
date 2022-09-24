@@ -1,12 +1,3 @@
-[submodule "DVDProfilerHelper"]
-	path = DVDProfilerHelper
-	url = https://github.com/DJDoena/DVDProfilerHelper.git
 [submodule "PluginInterface"]
 	path = PluginInterface
 	url = https://github.com/DJDoena/PluginInterface.git
-[submodule "DigitalDownloadInfoLibrary"]
-	path = DigitalDownloadInfoLibrary
-	url = https://github.com/DJDoena/DigitalDownloadInfoLibrary.git
-[submodule "Microsoft.WindowsAPICodePack"]
-	path = Microsoft.WindowsAPICodePack
-	url = https://github.com/DJDoena/Microsoft.WindowsAPICodePack.git
