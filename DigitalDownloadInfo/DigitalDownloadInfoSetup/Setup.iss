@@ -1,27 +1,27 @@
 [Setup]
 AppName=Digital Download Info
 AppId=DigitalDownloadInfo
-AppVerName=Digital Download Info 1.0.1.5
-AppCopyright=Copyright © Doena Soft. 2017 - 2022
+AppVerName=Digital Download Info 1.0.2.0
+AppCopyright=Copyright © Doena Soft. 2017 - 2025
 AppPublisher=Doena Soft.
 AppPublisherURL=http://doena-journal.net/en/dvd-profiler-tools/
 DefaultDirName={commonpf32}\Doena Soft.\Digital Download Info
 ; DefaultGroupName=Doena Soft.
 DirExistsWarning=No
-SourceDir=..\DigitalDownloadInfo\bin\x86\DigitalDownloadInfo
+SourceDir=..\DigitalDownloadInfo\bin\x86\Release\net481
 Compression=zip/9
 AppMutex=InvelosDVDPro
 OutputBaseFilename=DigitalDownloadInfoSetup
-OutputDir=..\..\..\..\DigitalDownloadInfoSetup\Setup\DigitalDownloadInfo
+OutputDir=..\Setup\DigitalDownloadInfo
 MinVersion=0,6.1sp1
 PrivilegesRequired=admin
 WizardStyle=modern
 DisableReadyPage=yes
 ShowLanguageDialog=no
 VersionInfoCompany=Doena Soft.
-VersionInfoCopyright=2017 - 2022
+VersionInfoCopyright=2017 - 2025
 VersionInfoDescription=Digital Download Info Setup
-VersionInfoVersion=1.0.1.5
+VersionInfoVersion=1.0.2.0
 UninstallDisplayIcon={app}\djdsoft.ico
 
 [Languages]
@@ -39,15 +39,21 @@ Source: "djdsoft.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DoenaSoft.DigitalDownloadInfo.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DoenaSoft.DigitalDownloadInfo.pdb"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "DoenaSoft.DVDProfilerHelper.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.DVDProfiler.Helper.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 Source: "DoenaSoft.DigitalDownloadInfo.Interface.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 Source: "DoenaSoft.WindowsAPICodePack.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DoenaSoft.WindowsAPICodePack.Shell.dll"; DestDir: "{app}"; Flags: ignoreversion
 
+Source: "System.Buffers.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "System.Memory.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "System.Numerics.Vectors.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "System.Resources.Extensions.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "System.Runtime.CompilerServices.Unsafe.dll"; DestDir: "{app}"; Flags: ignoreversion
+
 Source: "de\DoenaSoft.DigitalDownloadInfo.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
-Source: "de\DoenaSoft.DVDProfilerHelper.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
+Source: "de\DoenaSoft.DVDProfiler.Helper.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

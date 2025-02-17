@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.DigitalDownloadInfo.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.ToolBox.Generics;
 using Invelos.DVDProfilerPlugin;
 using Microsoft.WindowsAPICodePack.Taskbar;
 
@@ -45,7 +46,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                         #endregion
 
-                        Object[] ids = GetProfileIds(exportAll);
+                        Object[] ids = this.GetProfileIds(exportAll);
 
                         DigitalDownloadInfoList ddis = new DigitalDownloadInfoList();
 
@@ -79,7 +80,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                             IDVDInfo profile;
                             Plugin.Api.DVDByProfileID(out profile, id, PluginConstants.DATASEC_AllSections, 0);
 
-                            ddis.Profiles[i] = GetXmlProfile(profile);
+                            ddis.Profiles[i] = this.GetXmlProfile(profile);
 
                             #region Progress
 
@@ -100,7 +101,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                         try
                         {
-                            DVDProfilerSerializer<DigitalDownloadInfoList>.Serialize(sfd.FileName, ddis);
+                            XmlSerializer<DigitalDownloadInfoList>.Serialize(sfd.FileName, ddis);
 
                             #region Progress
 
@@ -161,8 +162,8 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
             xmlProfile.DigitalDownloadInfo = ddi;
 
-            ddi.Company = GetText(dataManager.GetCompany);
-            ddi.Code = GetText(dataManager.GetCode);
+            ddi.Company = this.GetText(dataManager.GetCompany);
+            ddi.Code = this.GetText(dataManager.GetCode);
 
             return (xmlProfile);
         }
@@ -204,7 +205,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                     try
                     {
-                        ddis = DVDProfilerSerializer<DigitalDownloadInfoList>.Deserialize(ofd.FileName);
+                        ddis = XmlSerializer<DigitalDownloadInfoList>.Deserialize(ofd.FileName);
                     }
                     catch (Exception ex)
                     {
@@ -228,7 +229,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                                 #endregion
 
-                                Object[] ids = GetProfileIds(importAll);
+                                Object[] ids = this.GetProfileIds(importAll);
 
                                 Dictionary<String, Boolean> profileIds = new Dictionary<String, Boolean>(ids.Length);
 
@@ -269,8 +270,8 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                                         DigitalDownloadInfo ddi = xmlProfile.DigitalDownloadInfo;
 
-                                        SetTitle(ddi.Company, dataManager.SetCompany);
-                                        SetTitle(ddi.Code, dataManager.SetCode);
+                                        this.SetTitle(ddi.Company, dataManager.SetCompany);
+                                        this.SetTitle(ddi.Code, dataManager.SetCode);
 
                                         count++;
                                     }

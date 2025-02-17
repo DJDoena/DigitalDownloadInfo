@@ -1,144 +1,82 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C2972B88-D5C2-43F2-B439-59E517E0278A}</ProjectGuid>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>DJDSOFT.ICO</ApplicationIcon>
-    <AssemblyKeyContainerName>
-    </AssemblyKeyContainerName>
-    <AssemblyName>DoenaSoft.DigitalDownloadInfo</AssemblyName>
-    <AssemblyOriginatorKeyFile>DigitalDownloadInfo.snk</AssemblyOriginatorKeyFile>
-    <DefaultClientScript>JScript</DefaultClientScript>
-    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-    <DefaultTargetSchema>IE50</DefaultTargetSchema>
-    <DelaySign>false</DelaySign>
-    <OutputType>Library</OutputType>
-    <RootNamespace>DoenaSoft.DVDProfiler.DigitalDownloadInfo</RootNamespace>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>
-    </StartupObject>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\DigitalDownloadInfo\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <BaseAddress>285212672</BaseAddress>
-    <FileAlignment>4096</FileAlignment>
-    <RegisterForComInterop>true</RegisterForComInterop>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System">
-      <Name>System</Name>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing">
-      <Name>System.Drawing</Name>
-    </Reference>
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms">
-      <Name>System.Windows.Forms</Name>
-    </Reference>
-    <Reference Include="System.XML" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\PluginInterface\DVDProfiler.Interface\PluginInterface.5.cs">
-      <Link>PluginInterface.5.cs</Link>
-    </Compile>
-    <Compile Include="InternalConstants.cs" />
-    <Compile Include="Forms\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SettingsForm.Designer.cs">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managers\CsvManager.cs" />
-    <Compile Include="Resources\MessageBoxTexts.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MessageBoxTexts.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Texts.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Texts.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\DefaultValues.cs" />
-    <Compile Include="Settings\Settings.cs" />
-    <Compile Include="Managers\XmlManager.cs" />
-    <None Include="DigitalDownloadInfo.snk" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Plugin.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Managers\DataManager.cs" />
-    <EmbeddedResource Include="Resources\Texts.de.resx">
-      <DependentUpon>Texts.resx</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DJDSOFT.ICO">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Forms\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SettingsForm.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\MessageBoxTexts.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MessageBoxTexts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\MessageBoxTexts.de.resx">
-      <DependentUpon>MessageBoxTexts.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Texts.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Texts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="DoenaSoft.DigitalDownloadInfo.Interface">
-      <Version>1.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="DoenaSoft.DVDProfilerHelper">
-      <Version>2.2.9</Version>
-    </PackageReference>
-    <PackageReference Include="DoenaSoft.WindowsAPICodePack">
-      <Version>1.1.1</Version>
-    </PackageReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-    <PostBuildEvent>"%25ProgramFiles(x86)%25\Inno Setup 6\iscc.exe"  ..\..\..\..\DigitalDownloadInfoSetup\Setup.iss</PostBuildEvent>
-  </PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<AssemblyName>DoenaSoft.DigitalDownloadInfo</AssemblyName>
+		<RootNamespace>DoenaSoft.DVDProfiler.DigitalDownloadInfo</RootNamespace>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net481</TargetFrameworks>
+		<Platforms>x86</Platforms>
+		<ApplicationIcon>DJDSOFT.ICO</ApplicationIcon>
+		<UseWindowsForms>true</UseWindowsForms>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>DigitalDownloadInfo.snk</AssemblyOriginatorKeyFile>
+		<EnableComHosting>true</EnableComHosting>
+		<Title>Digital Download Info</Title>
+		<Description>Allows to add Digital Download Information.</Description>
+		<Company>Doena Soft.</Company>
+		<Authors>DJ Doena</Authors>
+		<Copyright>Copyright © Doena Soft. 2017 - 2025</Copyright>
+		<Version>1.0.2</Version>
+		<FileVersion>1.0.2</FileVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\..\PluginInterface\DVDProfiler.Interface\PluginInterface.5.cs" Link="PluginInterface.5.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DoenaSoft.DigitalDownloadInfo.Interface" Version="2.0.1" />
+		<PackageReference Include="DoenaSoft.DVDProfiler.Helper" Version="3.0.12" />
+		<PackageReference Include="DoenaSoft.WindowsAPICodePack" Version="3.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="System.Web" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Resources\MessageBoxTexts.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>MessageBoxTexts.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\Texts.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Texts.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\MessageBoxTexts.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>MessageBoxTexts.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\MessageBoxTexts.de.resx">
+			<DependentUpon>MessageBoxTexts.resx</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\Texts.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Texts.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\Texts.de.resx">
+			<DependentUpon>Texts.resx</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\Texts.fr.resx">
+			<DependentUpon>Texts.resx</DependentUpon>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="djdsoft.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="&quot;C:\Windows\Microsoft.NET\Framework\v4.0.30319\RegAsm.exe&quot; /codebase &quot;bin\$(Platform)\$(Configuration)\$(TargetFramework)\DoenaSoft.DigitalDownloadInfo.dll&quot;&#xD;&#xA;IF &quot;$(Configuration)&quot;==&quot;Release&quot; &quot;%25ProgramFiles(x86)%25\Inno Setup 6\iscc.exe&quot; &quot;..\DigitalDownloadInfoSetup\Setup.iss&quot;" />
+	</Target>
+
 </Project>

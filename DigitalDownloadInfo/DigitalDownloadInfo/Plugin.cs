@@ -9,6 +9,7 @@ using System.Web;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.DigitalDownloadInfo.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.ToolBox.Generics;
 using Invelos.DVDProfilerPlugin;
 
 namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
@@ -78,6 +79,11 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
         private readonly Dictionary<String, String> FilterTokens;
 
+        static Plugin()
+        {
+            DVDProfilerHelperAssemblyLoader.Load();
+        }
+
         public Plugin()
         {
             Companies = new Dictionary<String, UInt16>();
@@ -99,7 +105,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
         {
             //System.Diagnostics.Debugger.Launch();
 
-            Api = api;
+            this.Api = api;
 
             if (Directory.Exists(ApplicationPath) == false)
             {
@@ -110,7 +116,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
             {
                 try
                 {
-                    Settings = DVDProfilerSerializer<Settings>.Deserialize(SettingsFile);
+                    this.Settings = XmlSerializer<Settings>.Deserialize(SettingsFile);
                 }
                 catch (Exception ex)
                 {
@@ -118,36 +124,36 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                 }
             }
 
-            EnsureSettingsAndSetUILanguage();
+            this.EnsureSettingsAndSetUILanguage();
 
-            SetIsRemoteAccess();
+            this.SetIsRemoteAccess();
 
-            RegisterForEvents();
+            this.RegisterForEvents();
 
-            RegisterMenuItems();
+            this.RegisterMenuItems();
 
-            RegisterCustomFields();
+            this.RegisterCustomFields();
         }
 
         public void Unload()
         {
-            Api.UnregisterMenuItem(DvdMenuToken);
+            this.Api.UnregisterMenuItem(DvdMenuToken);
 
-            Api.UnregisterMenuItem(CollectionExportMenuToken);
-            Api.UnregisterMenuItem(CollectionImportMenuToken);
-            Api.UnregisterMenuItem(CollectionExportToCsvMenuToken);
+            this.Api.UnregisterMenuItem(CollectionExportMenuToken);
+            this.Api.UnregisterMenuItem(CollectionImportMenuToken);
+            this.Api.UnregisterMenuItem(CollectionExportToCsvMenuToken);
 
-            Api.UnregisterMenuItem(CollectionFlaggedExportMenuToken);
-            Api.UnregisterMenuItem(CollectionFlaggedImportMenuToken);
-            Api.UnregisterMenuItem(CollectionFlaggedExportToCsvMenuToken);
+            this.Api.UnregisterMenuItem(CollectionFlaggedExportMenuToken);
+            this.Api.UnregisterMenuItem(CollectionFlaggedImportMenuToken);
+            this.Api.UnregisterMenuItem(CollectionFlaggedExportToCsvMenuToken);
 
-            Api.UnregisterMenuItem(ToolsOptionsMenuToken);
-            Api.UnregisterMenuItem(ToolsExportOptionsMenuToken);
-            Api.UnregisterMenuItem(ToolsImportOptionsMenuToken);
+            this.Api.UnregisterMenuItem(ToolsOptionsMenuToken);
+            this.Api.UnregisterMenuItem(ToolsExportOptionsMenuToken);
+            this.Api.UnregisterMenuItem(ToolsImportOptionsMenuToken);
 
             try
             {
-                DVDProfilerSerializer<Settings>.Serialize(SettingsFile, Settings);
+                XmlSerializer<Settings>.Serialize(SettingsFile, this.Settings);
             }
             catch (Exception ex)
             {
@@ -155,7 +161,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                     , MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            Api = null;
+            this.Api = null;
         }
 
         public void HandleEvent(Int32 EventType
@@ -167,7 +173,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                 {
                     case (PluginConstants.EVENTID_CustomMenuClick):
                         {
-                            HandleMenuClick((Int32)EventData);
+                            this.HandleMenuClick((Int32)EventData);
 
                             break;
                         }
@@ -175,7 +181,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                         {
                             DatabaseRestoreRunning = true;
 
-                            RegisterCustomFields(false);
+                            this.RegisterCustomFields(false);
 
                             break;
                         }
@@ -185,7 +191,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                         {
                             DatabaseRestoreRunning = false;
 
-                            RegisterCustomFields();
+                            this.RegisterCustomFields();
 
                             break;
                         }
@@ -202,7 +208,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                         File.Delete(ErrorFile);
                     }
 
-                    LogException(ex);
+                    this.LogException(ex);
                 }
                 catch (Exception inEx)
                 {
@@ -232,7 +238,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
         public Int32 GetVersionMajor()
         {
-            Version version = System.Reflection.Assembly.GetAssembly(GetType()).GetName().Version;
+            Version version = System.Reflection.Assembly.GetAssembly(this.GetType()).GetName().Version;
 
             Int32 major = version.Major;
 
@@ -241,7 +247,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
         public Int32 GetVersionMinor()
         {
-            Version version = System.Reflection.Assembly.GetAssembly(GetType()).GetName().Version;
+            Version version = System.Reflection.Assembly.GetAssembly(this.GetType()).GetName().Version;
 
             Int32 minor = version.Minor * 100 + version.Build * 10 + version.Revision;
 
@@ -253,11 +259,11 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
         #region IDVDProfilerDataAwarePlugin
 
         public Boolean ExportsCustomDataXML()
-            => ((Settings.DefaultValues.ExportToCollectionXml) && (DatabaseRestoreRunning == false));
+            => ((this.Settings.DefaultValues.ExportToCollectionXml) && (DatabaseRestoreRunning == false));
 
         public String GetCustomDataXMLForDVD(IDVDInfo SourceDVD)
         {
-            if (Settings.DefaultValues.ExportToCollectionXml == false)
+            if (this.Settings.DefaultValues.ExportToCollectionXml == false)
             {
                 return (String.Empty);
             }
@@ -415,7 +421,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
         {
             try
             {
-                UnregisterCustomFilterField(rebuildFilters);
+                this.UnregisterCustomFilterField(rebuildFilters);
 
                 #region Schema
 
@@ -425,16 +431,16 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                     {
                         String xsd = sr.ReadToEnd();
 
-                        Api.SetGlobalSetting(Constants.FieldDomain, "DigitalDownloadInfoSchema", xsd, Constants.ReadKey, InternalConstants.WriteKey);
+                        this.Api.SetGlobalSetting(Constants.FieldDomain, "DigitalDownloadInfoSchema", xsd, Constants.ReadKey, InternalConstants.WriteKey);
                     }
                 }
 
                 #endregion
 
-                RegisterCustomField(Constants.Company, Texts.Company, rebuildFilters);
-                RegisterCustomField(Constants.Code, null, rebuildFilters);
+                this.RegisterCustomField(Constants.Company, Texts.Company, rebuildFilters);
+                this.RegisterCustomField(Constants.Code, null, rebuildFilters);
 
-                PrepareCompanies();
+                this.PrepareCompanies();
             }
             catch (Exception ex)
             {
@@ -448,7 +454,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                         File.Delete(ErrorFile);
                     }
 
-                    LogException(ex);
+                    this.LogException(ex);
                 }
                 catch (Exception inEx)
                 {
@@ -468,7 +474,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                 {
                     try
                     {
-                        Api.RemoveCustomFilterField(token);
+                        this.Api.RemoveCustomFilterField(token);
                     }
                     catch (COMException)
                     { }
@@ -482,9 +488,9 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
             , String displayName
             , Boolean rebuildFilters)
         {
-            Api.CreateCustomDVDField(Constants.FieldDomain, fieldName, PluginConstants.FIELD_TYPE_STRING, Constants.ReadKey, InternalConstants.WriteKey);
+            this.Api.CreateCustomDVDField(Constants.FieldDomain, fieldName, PluginConstants.FIELD_TYPE_STRING, Constants.ReadKey, InternalConstants.WriteKey);
 
-            Api.SetCustomDVDFieldStorage(Constants.FieldDomain, fieldName, InternalConstants.WriteKey, true, false);
+            this.Api.SetCustomDVDFieldStorage(Constants.FieldDomain, fieldName, InternalConstants.WriteKey, true, false);
 
             if (displayName != null)
             {
@@ -500,7 +506,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
             {
                 //System.Diagnostics.Debugger.Launch();
 
-                String token = Api.SetCustomFieldFilterableA(displayName, PluginConstants.FILTER_INPUT_TEXT, new[] { Texts.FilterStartsWith, Texts.FilterContains }, null);
+                String token = this.Api.SetCustomFieldFilterableA(displayName, PluginConstants.FILTER_INPUT_TEXT, new[] { Texts.FilterStartsWith, Texts.FilterContains }, null);
 
                 if (token != null)
                 {
@@ -520,51 +526,51 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
             String name;
             Boolean isRemote;
             String localPath;
-            Api.GetCurrentDatabaseInformation(out name, out isRemote, out localPath);
+            this.Api.GetCurrentDatabaseInformation(out name, out isRemote, out localPath);
 
             //System.Diagnostics.Debugger.Launch();
 
-            IsRemoteAccess = isRemote;
+            this.IsRemoteAccess = isRemote;
         }
 
         private void RegisterForEvents()
         {
-            Api.RegisterForEvent(PluginConstants.EVENTID_DatabaseOpened);
+            this.Api.RegisterForEvent(PluginConstants.EVENTID_DatabaseOpened);
 
-            Api.RegisterForEvent(PluginConstants.EVENTID_RestoreStarting);
-            Api.RegisterForEvent(PluginConstants.EVENTID_RestoreFinished);
-            Api.RegisterForEvent(PluginConstants.EVENTID_RestoreCancelled);
+            this.Api.RegisterForEvent(PluginConstants.EVENTID_RestoreStarting);
+            this.Api.RegisterForEvent(PluginConstants.EVENTID_RestoreFinished);
+            this.Api.RegisterForEvent(PluginConstants.EVENTID_RestoreCancelled);
         }
 
         private void RegisterMenuItems()
         {
-            DvdMenuToken = Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, "DVD", Texts.DDI, DvdMenuId);
+            DvdMenuToken = this.Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, "DVD", Texts.DDI, DvdMenuId);
 
-            CollectionExportMenuToken = Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Collection\" + Texts.DDI, Texts.ExportToXml, CollectionExportMenuId);
+            CollectionExportMenuToken = this.Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Collection\" + Texts.DDI, Texts.ExportToXml, CollectionExportMenuId);
 
-            if (IsRemoteAccess == false)
+            if (this.IsRemoteAccess == false)
             {
-                CollectionImportMenuToken = Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Collection\" + Texts.DDI, Texts.ImportFromXml, CollectionImportMenuId);
+                CollectionImportMenuToken = this.Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Collection\" + Texts.DDI, Texts.ImportFromXml, CollectionImportMenuId);
             }
 
-            CollectionExportToCsvMenuToken = Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form
+            CollectionExportToCsvMenuToken = this.Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form
                 , @"Collection\" + Texts.DDI, Texts.ExportToExcel, CollectionExportToCsvMenuId);
 
-            CollectionFlaggedExportMenuToken = Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Collection\Flagged\" + Texts.DDI, Texts.ExportToXml, CollectionFlaggedExportMenuId);
+            CollectionFlaggedExportMenuToken = this.Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Collection\Flagged\" + Texts.DDI, Texts.ExportToXml, CollectionFlaggedExportMenuId);
 
-            if (IsRemoteAccess == false)
+            if (this.IsRemoteAccess == false)
             {
-                CollectionFlaggedImportMenuToken = Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Collection\Flagged\" + Texts.DDI, Texts.ImportFromXml, CollectionFlaggedImportMenuId);
+                CollectionFlaggedImportMenuToken = this.Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Collection\Flagged\" + Texts.DDI, Texts.ImportFromXml, CollectionFlaggedImportMenuId);
             }
 
-            CollectionFlaggedExportToCsvMenuToken = Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form
+            CollectionFlaggedExportToCsvMenuToken = this.Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form
                 , @"Collection\Flagged\" + Texts.DDI, Texts.ExportToExcel, CollectionFlaggedExportToCsvMenuId);
 
-            ToolsOptionsMenuToken = Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Tools\" + Texts.DDI, Texts.Options, ToolsOptionsMenuId);
+            ToolsOptionsMenuToken = this.Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Tools\" + Texts.DDI, Texts.Options, ToolsOptionsMenuId);
 
-            ToolsExportOptionsMenuToken = Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Tools\" + Texts.DDI, Texts.ExportOptions, ToolsExportOptionsMenuId);
+            ToolsExportOptionsMenuToken = this.Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Tools\" + Texts.DDI, Texts.ExportOptions, ToolsExportOptionsMenuId);
 
-            ToolsImportOptionsMenuToken = Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Tools\" + Texts.DDI, Texts.ImportOptions, ToolsImportOptionsMenuId);
+            ToolsImportOptionsMenuToken = this.Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form, @"Tools\" + Texts.DDI, Texts.ImportOptions, ToolsImportOptionsMenuId);
         }
 
         private static void AddTag(StringBuilder sb
@@ -595,7 +601,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
         {
             Texts.Culture = DefaultValues.GetUILanguage();
 
-            CultureInfo uiLanguage = EnsureSettings();
+            CultureInfo uiLanguage = this.EnsureSettings();
 
             Texts.Culture = uiLanguage;
 
@@ -604,17 +610,17 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
         private CultureInfo EnsureSettings()
         {
-            if (Settings == null)
+            if (this.Settings == null)
             {
-                Settings = new Settings();
+                this.Settings = new Settings();
             }
 
-            if (Settings.DefaultValues == null)
+            if (this.Settings.DefaultValues == null)
             {
-                Settings.DefaultValues = new DefaultValues();
+                this.Settings.DefaultValues = new DefaultValues();
             }
 
-            return (Settings.DefaultValues.UiLanguage);
+            return (this.Settings.DefaultValues.UiLanguage);
         }
 
         private static String HtmlEncode(String decoded)
@@ -640,7 +646,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                 {
                     case (DvdMenuId):
                         {
-                            OpenEditor();
+                            this.OpenEditor();
 
                             break;
                         }
@@ -694,19 +700,19 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                         }
                     case (ToolsOptionsMenuId):
                         {
-                            OpenSettings();
+                            this.OpenSettings();
 
                             break;
                         }
                     case (ToolsExportOptionsMenuId):
                         {
-                            ExportOptions();
+                            this.ExportOptions();
 
                             break;
                         }
                     case (ToolsImportOptionsMenuId):
                         {
-                            ImportOptions();
+                            this.ImportOptions();
 
                             break;
                         }
@@ -724,7 +730,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                         File.Delete(ErrorFile);
                     }
 
-                    LogException(ex);
+                    this.LogException(ex);
                 }
                 catch (Exception inEx)
                 {
@@ -750,7 +756,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                     try
                     {
-                        dv = DVDProfilerSerializer<DefaultValues>.Deserialize(ofd.FileName);
+                        dv = XmlSerializer<DefaultValues>.Deserialize(ofd.FileName);
                     }
                     catch (Exception ex)
                     {
@@ -760,7 +766,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                     if (dv != null)
                     {
-                        Settings.DefaultValues = dv;
+                        this.Settings.DefaultValues = dv;
 
                         Texts.Culture = dv.UiLanguage;
 
@@ -786,11 +792,11 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    DefaultValues dv = Settings.DefaultValues;
+                    DefaultValues dv = this.Settings.DefaultValues;
 
                     try
                     {
-                        DVDProfilerSerializer<DefaultValues>.Serialize(sfd.FileName, dv);
+                        XmlSerializer<DefaultValues>.Serialize(sfd.FileName, dv);
 
                         MessageBox.Show(MessageBoxTexts.Done, MessageBoxTexts.InformationHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -809,20 +815,20 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    RegisterCustomFields();
+                    this.RegisterCustomFields();
                 }
             }
         }
 
         private void OpenEditor()
         {
-            IDVDInfo profile = Api.GetDisplayedDVD();
+            IDVDInfo profile = this.Api.GetDisplayedDVD();
 
             String profileId = profile.GetProfileID();
 
             if (String.IsNullOrEmpty(profileId) == false)
             {
-                profile = Api.CreateDVD();
+                profile = this.Api.CreateDVD();
 
                 profile.SetProfileID(profileId);
 
@@ -835,11 +841,11 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
         private void LogException(Exception ex)
         {
-            ex = WrapCOMException(ex);
+            ex = this.WrapCOMException(ex);
 
             ExceptionXml exceptionXml = new ExceptionXml(ex);
 
-            DVDProfilerSerializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
+            XmlSerializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
         }
 
         private Exception WrapCOMException(Exception ex)
@@ -850,7 +856,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
             if (comEx != null)
             {
-                String lastApiError = Api.GetLastError();
+                String lastApiError = this.Api.GetLastError();
 
                 EnhancedCOMException newEx = new EnhancedCOMException(lastApiError, comEx);
 
@@ -866,7 +872,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
             Companies.Clear();
 
-            Object[] ids = (Object[])(Api.GetAllProfileIDs());
+            Object[] ids = (Object[])(this.Api.GetAllProfileIDs());
 
             if ((ids != null) && (ids.Length > 0))
             {
@@ -874,7 +880,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                 {
                     String id = ids[i].ToString();
 
-                    IDVDInfo profile = Api.CreateDVD();
+                    IDVDInfo profile = this.Api.CreateDVD();
 
                     profile.SetProfileID(id);
 

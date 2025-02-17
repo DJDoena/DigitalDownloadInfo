@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.DigitalDownloadInfo.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.ToolBox.Generics;
 using Invelos.DVDProfilerPlugin;
 
 namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
@@ -24,19 +25,19 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
             Profile = profile;
 
-            InitializeComponent();
+            this.InitializeComponent();
 
             DataManager = new DataManager(Profile);
 
-            SetTextBoxes();
+            this.SetTextBoxes();
 
             List<String> companies = new List<String>(Plugin.Companies.Keys);
             companies.Sort();
             CompanyComboBox.Items.AddRange(companies.ToArray());
 
-            SetLabels();
+            this.SetLabels();
 
-            SetReadOnlies();
+            this.SetReadOnlies();
 
             DataChanged = false;
         }
@@ -49,7 +50,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                 PasteAllToolStripMenuItem.Enabled = false;
                 SaveButton.Enabled = false;
 
-                SetControlsReadonly(Controls);
+                this.SetControlsReadonly(this.Controls);
             }
         }
 
@@ -69,7 +70,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
                     }
                     else
                     {
-                        SetControlsReadonly(control.Controls);
+                        this.SetControlsReadonly(control.Controls);
                     }
                 }
             }
@@ -156,16 +157,16 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
             }
 
             DataManager.SetCode(CodeTextBox.Text);
-                        
+
             DataChanged = false;
 
-            Close();
+            this.Close();
         }
 
         private void OnDiscardButtonClick(Object sender
             , EventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void OnOptionsToolStripMenuItemClick(Object sender
@@ -195,11 +196,11 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    DigitalDownloadInfo ddi = GetDigitalDownloadInfoForXmlStructure();
+                    DigitalDownloadInfo ddi = this.GetDigitalDownloadInfoForXmlStructure();
 
                     try
                     {
-                        DVDProfilerSerializer<DigitalDownloadInfo>.Serialize(sfd.FileName, ddi);
+                        XmlSerializer<DigitalDownloadInfo>.Serialize(sfd.FileName, ddi);
 
                         MessageBox.Show(MessageBoxTexts.Done, MessageBoxTexts.InformationHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -216,8 +217,8 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
         {
             DigitalDownloadInfo ddi = new DigitalDownloadInfo();
 
-            ddi.Company = GetText(CompanyComboBox);
-            ddi.Code = GetText(CodeTextBox);
+            ddi.Company = this.GetText(CompanyComboBox);
+            ddi.Code = this.GetText(CodeTextBox);
 
             return (ddi);
         }
@@ -269,7 +270,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                     try
                     {
-                        ddi = DVDProfilerSerializer<DigitalDownloadInfo>.Deserialize(ofd.FileName);
+                        ddi = XmlSerializer<DigitalDownloadInfo>.Deserialize(ofd.FileName);
                     }
                     catch (Exception ex)
                     {
@@ -279,7 +280,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
                     if (ddi != null)
                     {
-                        SetDigitalDownloadInfoFromXmlStructure(ddi);
+                        this.SetDigitalDownloadInfoFromXmlStructure(ddi);
                     }
                 }
             }
@@ -287,8 +288,8 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
         private void SetDigitalDownloadInfoFromXmlStructure(DigitalDownloadInfo ddi)
         {
-            SetText(ddi.Company, CompanyComboBox);
-            SetText(ddi.Code, CodeTextBox);
+            this.SetText(ddi.Company, CompanyComboBox);
+            this.SetText(ddi.Code, CodeTextBox);
         }
 
         private void SetText(Text text
@@ -308,12 +309,12 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
         {
             OnlineAccess.Init("Doena Soft.", "DigitalDownloadInfo");
 
-            OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "DigitalDownloadInfo", GetType().Assembly);
+            OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "DigitalDownloadInfo", this.GetType().Assembly);
         }
 
         private void OnAboutToolStripMenuItemClick(Object sender, EventArgs e)
         {
-            using (AboutBox aboutBox = new AboutBox(GetType().Assembly))
+            using (AboutBox aboutBox = new AboutBox(this.GetType().Assembly))
             {
                 aboutBox.ShowDialog();
             }
@@ -342,7 +343,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
         {
             Plugin.ImportOptions();
 
-            SetLabels();
+            this.SetLabels();
         }
 
         private void OnExportOptionsToolStripMenuItemClick(Object sender
@@ -354,9 +355,9 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
         private void OnCopyAllToolStripMenuItemClick(Object sender
             , EventArgs e)
         {
-            DigitalDownloadInfo ddi = GetDigitalDownloadInfoForXmlStructure();
+            DigitalDownloadInfo ddi = this.GetDigitalDownloadInfoForXmlStructure();
 
-            String xml = DVDProfilerSerializer<DigitalDownloadInfo>.ToString(ddi);
+            String xml = XmlSerializer<DigitalDownloadInfo>.ToString(ddi);
 
             try
             {
@@ -375,7 +376,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
             {
                 String xml = Clipboard.GetText();
 
-                ddi = DVDProfilerSerializer<DigitalDownloadInfo>.FromString(xml);
+                ddi = XmlSerializer<DigitalDownloadInfo>.FromString(xml);
             }
             catch
             {
@@ -385,7 +386,7 @@ namespace DoenaSoft.DVDProfiler.DigitalDownloadInfo
 
             if (ddi != null)
             {
-                SetDigitalDownloadInfoFromXmlStructure(ddi);
+                this.SetDigitalDownloadInfoFromXmlStructure(ddi);
             }
         }
     }
