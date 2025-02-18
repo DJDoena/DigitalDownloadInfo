@@ -1,7 +1,7 @@
 [Setup]
 AppName=Digital Download Info
 AppId=DigitalDownloadInfo
-AppVerName=Digital Download Info 1.0.2.0
+AppVerName=Digital Download Info 1.0.2
 AppCopyright=Copyright © Doena Soft. 2017 - 2025
 AppPublisher=Doena Soft.
 AppPublisherURL=http://doena-journal.net/en/dvd-profiler-tools/
@@ -21,7 +21,7 @@ ShowLanguageDialog=no
 VersionInfoCompany=Doena Soft.
 VersionInfoCopyright=2017 - 2025
 VersionInfoDescription=Digital Download Info Setup
-VersionInfoVersion=1.0.2.0
+VersionInfoVersion=1.0.2
 UninstallDisplayIcon={app}\djdsoft.ico
 
 [Languages]
@@ -36,24 +36,10 @@ Name: "full"; Description: "Full installation"
 [Files]
 Source: "djdsoft.ico"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "DoenaSoft.DigitalDownloadInfo.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DoenaSoft.DigitalDownloadInfo.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "*.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "*.pdb"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "DoenaSoft.DVDProfiler.Helper.dll"; DestDir: "{app}"; Flags: ignoreversion
-
-Source: "DoenaSoft.DigitalDownloadInfo.Interface.dll"; DestDir: "{app}"; Flags: ignoreversion
-
-Source: "DoenaSoft.WindowsAPICodePack.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DoenaSoft.WindowsAPICodePack.Shell.dll"; DestDir: "{app}"; Flags: ignoreversion
-
-Source: "System.Buffers.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "System.Memory.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "System.Numerics.Vectors.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "System.Resources.Extensions.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "System.Runtime.CompilerServices.Unsafe.dll"; DestDir: "{app}"; Flags: ignoreversion
-
-Source: "de\DoenaSoft.DigitalDownloadInfo.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
-Source: "de\DoenaSoft.DVDProfiler.Helper.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
+Source: "de\*.dll"; DestDir: "{app}\de"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
