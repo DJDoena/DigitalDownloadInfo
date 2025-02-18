@@ -64,9 +64,6 @@
 		<EmbeddedResource Update="Resources\Texts.de.resx">
 			<DependentUpon>Texts.resx</DependentUpon>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Resources\Texts.fr.resx">
-			<DependentUpon>Texts.resx</DependentUpon>
-		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
